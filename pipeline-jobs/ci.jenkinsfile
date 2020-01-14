@@ -1,0 +1,19 @@
+pipeline{
+    agent{
+        label 'JAVA'
+    }
+    stages {
+
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/ragni085/student.git'
+            }
+        }
+
+        stage('compile the code') {
+            steps {
+                sh 'mv clean compile'
+            }
+        }
+    }
+}
