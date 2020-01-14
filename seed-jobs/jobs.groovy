@@ -20,6 +20,23 @@ pipelineJob('sample-pipeline') {
     }
 }
 
+listView('student') {
+    description('All  student jobs')
+    filterBuildQueue()
+    filterExecutors()
+    jobs {
+        name('CI-pipeline')
+    }
+    columns {
+        status()
+        weather()
+        name()
+        lastSuccess()
+        lastFailure()
+        lastDuration()
+        buildButton()
+    }
+}
 
 pipelineJob('CI-pipeline') {
     configure { flowdefinition ->
