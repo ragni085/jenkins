@@ -8,6 +8,11 @@ pipelineJob('sample-pipeline') {
                         'credentialId'('Git-User')
                     }
                 }
+                'branches' {
+                    'hudson.plugins.git.BranchSpec' {
+                        'name'('*/master')
+                    }
+                }
             }
             'scriptPath'('pipeline-jobs/sample.Jenkinsfile')
             'lightweight'(true)
