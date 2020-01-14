@@ -1,7 +1,17 @@
 pipelineJob('example') {
     definition {
         cps {
-            script(readFileFromWorkspace('project-a-workflow.groovy'))
+            scm {
+                 git {
+                     remote {
+                        url('git@server:account/repo1.git')
+                    }
+                    extensions {
+                        cleanAfterCheckout()
+                        relativeTargetDirectory('repo1')
+                    }
+                }
+            }
         }
     }
 }
