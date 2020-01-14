@@ -1,13 +1,7 @@
-job('example') {
-  label('JAVA')
-   scm {
-        git {
-            remote {
-                url('https://github.com/javabycode/spring-boot-maven-example-helloworld.git')
-            }
+pipelineJob('example') {
+    definition {
+        cps {
+            script(readFileFromWorkspace('project-a-workflow.groovy'))
         }
-    }
-  steps {
-        shell('mvn clean package')
     }
 }
