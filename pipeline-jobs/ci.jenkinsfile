@@ -2,7 +2,7 @@ pipeline{
     agent{
         label 'JAVA'
     }
-    enviroment {
+    environment {
         NEXUS=credendials('NEXUS')
     }
     stages {
@@ -24,7 +24,8 @@ pipeline{
             steps{
                sh'''
                  mvn -s setting.xml package deploy -DNEXUS_USR=${NEXUS-USR} DNEXUS_PSW=${NEXUS_PSW}
-               '''
+              '''
+            }  
         }
     }
 }
