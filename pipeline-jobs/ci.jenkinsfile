@@ -2,6 +2,9 @@ pipeline{
     agent{
         label 'JAVA'
     }
+    enviroment {
+        NEXUS=credendials('NEXUS')
+    }
     stages {
 
         stage('Clone Repository') {
@@ -9,11 +12,19 @@ pipeline{
                 git 'https://github.com/ragni085/student.git'
             }
         }
-
+ 
         stage('compile the code') {
             steps {
                 sh 'mvn clean compile'
             }
+        }
+    }
+
+        stage("upload SNAPSHOTSArtifacts") {
+            steps{
+               sh'''
+                 mvn -s setting.xml package deploy -DNEXUS_USR=${NEXUS-USR} DNEXUS_PSW=${NEXUS_PSW}
+               '''
         }
     }
 }
