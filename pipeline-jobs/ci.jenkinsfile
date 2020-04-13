@@ -22,8 +22,7 @@ pipeline {
     stage("Upload SNAPSHOT Artifacts") {
       steps {
         sh '''
-          mvn -s settings.xml package deploy -DNEXUS_USR=${NEXUS_USR} -DNEXUS_PSW=${NEXUS_PSW} | tee output.txt
-          cat output.txt  | grep Uploaded | grep war |xargs -n1 | grep ^http >url.txt 
+          mvn -s settings.xml package deploy -DNEXUS_USR=${NEXUS_USR} -DNEXUS_PSW=${NEXUS_PSW}
         '''
       }
     }
