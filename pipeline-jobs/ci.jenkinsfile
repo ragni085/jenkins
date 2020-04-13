@@ -1,31 +1,32 @@
-pipeline{
-    agent{
-        label 'JAVA'
-    }
-    environment {
-        NEXUS=credendials('NEXUS')
-    }
-    stages {
-
-        stage('Clone Repository') {
-            steps {
-                git credentialsId: 'Git-User', url: 'https://github.com/ragni085/student.git'
-            }
-        }
- 
-        stage('compile the code') {
-            steps {
-                sh 'mvn clean compile'
-            }
-        }
+pipeline {
+  agent {
+      label 'JAVA'
+  }
+  environment {
+    NEXUS=credentials('NEXUS')
+  }
+  stages {
     
-
-        stage("upload SNAPSHOTSArtifacts") {
-            steps{
-               sh'''
-                 mvn -s setting.xml package deploy -DNEXUS_USR=${NEXUS-USR} DNEXUS_PSW=${NEXUS_PSW}
-              '''
-            }  
-        }
+    stage('Clone Repository') {
+      steps {
+        git credentialsId: 'Git-User', url: 'https://github.com/ragni085/student.git'
+      }
     }
-}
+
+    stage('Compile the Code') {
+      steps {
+        sh 'mvn clean compile'
+      }
+    }
+
+    stage("Upload SNAPSHOT Artifacts") {
+      steps {
+        sh '''
+          mvn -s settings.xml package deploy -DNEXUS_USR=${NEXUS_USR} -DNEXUS_PSW=${NEXUS_PSW} | tee output.txt
+          cat output.txt  | grep Uploaded | grep war |xargs -n1 | grep ^http >url.txt 
+        '''
+      }
+    }
+
+  }
+
