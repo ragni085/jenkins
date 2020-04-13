@@ -1,6 +1,6 @@
 pipelineJob('sample-pipeline') {
     configure { flowdefinition ->
-        flowerinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
+        flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
             'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
                 'userRemoteConfigs' {
                     'hudson.plugins.git.UserRemoteConfig' {
@@ -65,7 +65,7 @@ pipelineJob('CI-pipeline') {
 
 pipelineJob('RELEASE-pipeline') {
     configure { flowdefinition ->
-        flowerinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
+        flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
             'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
                 'userRemoteConfigs' {
                     'hudson.plugins.git.UserRemoteConfig' {
