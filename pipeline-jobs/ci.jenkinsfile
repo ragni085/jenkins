@@ -9,7 +9,7 @@ pipeline{
 
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/ragni085/student.git'
+                git credentialsId: 'Git-User', url: 'https://github.com/ragni085/student.git'
             }
         }
  
