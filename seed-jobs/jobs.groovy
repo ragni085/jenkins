@@ -46,7 +46,7 @@ pipelineJob('CI-pipeline') {
                 'userRemoteConfigs' {
                     'hudson.plugins.git.UserRemoteConfig' {
                         'url'('https://github.com/ragni085/jenkins.git')
-                        'credentialId'('Git-User')
+                        'credentialsId'('Git-User')
                     }
                 }
                 'branches' {
@@ -60,6 +60,7 @@ pipelineJob('CI-pipeline') {
         }
     }
 }
+
 
 
 pipelineJob('RELEASE-pipeline') {
