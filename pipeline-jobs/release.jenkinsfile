@@ -1,0 +1,27 @@
+pipeline {
+  agent {
+      label 'JAVA'
+    }
+  environment {
+    SONAR_TOKEN=credentials('SonarToke-StudentApp')
+    NEXUS=credentials('NEXUS')
+    }
+  stages {
+    
+    stage('Clone Terraform Repo') {
+      steps {
+        git credentialsId: 'Git-User', url: 'https://gitlab.com/devopsb43/terraform.git'
+      }
+    }
+
+    stage('Create Test Infra') {
+      steps {
+        sh '''
+          cd project-test-infra
+          terraform init 
+          terraform apply -auto-approve
+        '''
+        }
+    }
+  }
+}
