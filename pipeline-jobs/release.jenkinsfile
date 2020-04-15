@@ -1,11 +1,11 @@
 pipeline {
   agent {
       label 'JAVA'
-    }
+  }
   environment {
-    SONAR_TOKEN=credentials('SonarToke-StudentApp')
+
     NEXUS=credentials('NEXUS')
-    }
+  }
   stages {
     
     stage('Clone Terraform Repo') {
@@ -21,7 +21,8 @@ pipeline {
           terraform init 
           terraform apply -auto-approve
         '''
-        }
+       }
     }
   }
-}
+}    
+
