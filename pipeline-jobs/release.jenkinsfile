@@ -10,7 +10,7 @@ pipeline {
     
     stage('Clone Terraform Repo') {
       steps {
-        git credentialsId: 'Git-User', url: 'https://gitlab.com/devopsb43/terraform.git'
+        git credentialsId: 'Git-User', url: 'https://github.com/ragni085/terraform.git'
       }
     }
 
