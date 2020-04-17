@@ -31,9 +31,9 @@ pipeline {
   }
 }
 
-post {
+  post {
     success {
       archiveArtifacts artifacts: 'url.txt'
     }
-}
+  }
 
