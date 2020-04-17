@@ -28,7 +28,11 @@ pipeline {
       steps {
         copyArtifacts filter: 'url.txt', projectName: 'CI-pipeline'
         sh '''
-          cat url.txt
+         URL=$(cat url.txt)
+          cd project-test-infra
+          cat deploy/deploy.tf >>provider.tf
+          terraform init 
+          terraform apply -auto-approve -var URL=${URL}
         '''
       }
     }
