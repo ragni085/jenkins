@@ -29,11 +29,12 @@ pipeline {
     }
 
   }
-}
+
 
   post {
     success {
       archiveArtifacts artifacts: 'url.txt'
     }
   }
+}  
 
