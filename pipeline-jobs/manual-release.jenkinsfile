@@ -11,9 +11,9 @@ pipeline {
       steps {
        git credentialsId: 'Git-User', url: 'https://github.com/ragni085/student.git'
        sh '''
-       
+
         mvn versions:set -DnewVersion=${RELEASE_VERSION}-RELEASE
-        mvn -s settings.xml package deploy -DNEXUS_USR=${NEXUS_USR} -DNEXUS_PSW=${NEXUS_PSW} 
+        mvn -s settings.xml package deploy -DNEXUS_USR=${NEXUS_USR} -DNEXUS_PSW=${NEXUS_PSW} | tee output.txt
        ''' 
       }
     }
