@@ -95,7 +95,7 @@ pipelineJob('Manual-Release') {
             'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
                 'userRemoteConfigs' {
                     'hudson.plugins.git.UserRemoteConfig' {
-                        'url'('https://gitlab.com/devopsb43/jenkins.git')
+                        'url'('https://github.com/ragni085/jenkins.git')
                         'credentialsId'('Git-User')
                     }
                 }
