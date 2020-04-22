@@ -27,6 +27,7 @@ listView('student') {
     jobs {
         name('CI-pipeline')
         name('RELEASE-pipeline')
+        name('Manual-Release')
     }
     columns {
         status()
@@ -80,6 +81,31 @@ pipelineJob('RELEASE-pipeline') {
                 }
             }
             'scriptPath'('pipeline-jobs/release.Jenkinsfile')
+            'lightweight'(true)
+        }
+    }
+}
+
+pipelineJob('Manual-Release') {
+    parameters {
+        stringParam('RELEASE_VERSION', '', 'RELEASE VERSION OF APPLICATION')
+    }
+    configure { flowdefinition ->
+        flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
+            'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
+                'userRemoteConfigs' {
+                    'hudson.plugins.git.UserRemoteConfig' {
+                        'url'('https://gitlab.com/devopsb43/jenkins.git')
+                        'credentialsId'('Git-User')
+                    }
+                }
+                'branches' {
+                    'hudson.plugins.git.BranchSpec' {
+                        'name'('*/master')
+                    }
+                }
+            }
+            'scriptPath'('pipeline-jobs/manual-release.Jenkinsfile')
             'lightweight'(true)
         }
     }
